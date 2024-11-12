@@ -1,1 +1,2 @@
 121-best-time-to-buy-and-sell-stock|Easy|1731283200000
+20-valid-parentheses|Easy|1731369600000
