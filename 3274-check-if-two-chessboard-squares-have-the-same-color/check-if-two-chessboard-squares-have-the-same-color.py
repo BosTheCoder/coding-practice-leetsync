@@ -7,7 +7,6 @@ class Solution:
                 color = "black"
             else:
                 color = "white"
-            print(c1, color)
             return color
         
         return color(coordinate1) == color(coordinate2)
