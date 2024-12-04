@@ -2,3 +2,4 @@
 20-valid-parentheses|Easy|1731369600000
 136-single-number|Easy|1732147200000
 3274-check-if-two-chessboard-squares-have-the-same-color|Easy|1733184000000
+141-linked-list-cycle|Easy|1733270400000
