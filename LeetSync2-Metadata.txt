@@ -4,3 +4,4 @@
 3274-check-if-two-chessboard-squares-have-the-same-color|Easy|1733184000000
 141-linked-list-cycle|Easy|1733270400000
 125-valid-palindrome|Easy|1733356800000
+104-maximum-depth-of-binary-tree|Easy|1733443200000
