@@ -6,3 +6,4 @@
 125-valid-palindrome|Easy|1733356800000
 104-maximum-depth-of-binary-tree|Easy|1733443200000
 338-counting-bits|Easy|1733529600000
+252-meeting-rooms|Easy|1733616000000
