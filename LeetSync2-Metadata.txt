@@ -7,3 +7,4 @@
 104-maximum-depth-of-binary-tree|Easy|1733443200000
 338-counting-bits|Easy|1733529600000
 252-meeting-rooms|Easy|1733616000000
+70-climbing-stairs|Easy|1733702400000
