@@ -9,3 +9,4 @@
 252-meeting-rooms|Easy|1733616000000
 70-climbing-stairs|Easy|1733702400000
 190-reverse-bits|Easy|1733788800000
+242-valid-anagram|Easy|1733875200000
