@@ -10,12 +10,16 @@ class Solution:
             if not node:
                 return -1, True
             height_left, bal_left = dfs(node.left)
+            if not bal_left:
+                return -1, bal_left
             height_right, bal_right = dfs(node.right)
+            if not bal_right:
+                return -1,bal_right
+            
             max_height = max(height_left, height_right)
             if abs(height_left - height_right) > 1:
                 return 1+max_height, False
-            if not (bal_left and bal_right):
-                return 1+max_height, False
+            
             
             return 1+max_height, True
         
