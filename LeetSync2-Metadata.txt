@@ -16,3 +16,4 @@
 191-number-of-1-bits|Easy|1734220800000
 704-binary-search|Easy|1734307200000
 21-merge-two-sorted-lists|Easy|1734393600000
+1-two-sum|Easy|1734480000000
