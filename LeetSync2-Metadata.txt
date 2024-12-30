@@ -17,3 +17,4 @@
 704-binary-search|Easy|1734307200000
 21-merge-two-sorted-lists|Easy|1734393600000
 1-two-sum|Easy|1734480000000
+155-min-stack|Medium|1735506000000
