@@ -20,5 +20,4 @@ class Solution:
                     q.appendleft(node.right)
                 curr_level.append(node.val)
             ret.append(curr_level)
-            print(ret)
         return ret
