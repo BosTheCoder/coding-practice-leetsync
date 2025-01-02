@@ -19,3 +19,4 @@
 1-two-sum|Easy|1734480000000
 155-min-stack|Medium|1735506000000
 102-binary-tree-level-order-traversal|Medium|1735506000000
+494-target-sum|Medium|1735765200000
