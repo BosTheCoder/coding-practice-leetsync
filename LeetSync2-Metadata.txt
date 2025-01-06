@@ -21,3 +21,4 @@
 102-binary-tree-level-order-traversal|Medium|1735506000000
 494-target-sum|Medium|1735765200000
 56-merge-intervals|Medium|1735851600000
+74-search-a-2d-matrix|Medium|1736110800000
