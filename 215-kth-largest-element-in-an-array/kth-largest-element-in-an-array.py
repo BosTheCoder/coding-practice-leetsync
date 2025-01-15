@@ -11,8 +11,6 @@ class Solution:
             else:
                 _,curr = arr[ix]
                 arr[ix] = (num, curr+1)
-        
-        print(arr)
 
         end = len(arr) -1
         curr = None
@@ -23,10 +21,8 @@ class Solution:
                     k -= 1
                     curr = arr[end]
                     num_values -= 1
-                    # print(curr)
                 k -= 1
                 curr = arr[end]
-                # print(curr)
             end -= 1
         return curr[0]
 
