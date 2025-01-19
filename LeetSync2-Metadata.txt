@@ -26,3 +26,4 @@
 3-longest-substring-without-repeating-characters|Medium|1736812800000
 215-kth-largest-element-in-an-array|Medium|1736899200000
 39-combination-sum|Medium|1736985600000
+746-min-cost-climbing-stairs|Easy|1737244800000
