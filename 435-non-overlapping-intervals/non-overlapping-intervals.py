@@ -3,7 +3,6 @@ class Solution:
         intervals.sort(key=lambda x: (x[0],x[1]))
         removal_count = 0
         last_interval = intervals[0]
-        print(intervals)
         for i in range(1,len(intervals)):
             interval = intervals[i]
             if interval[0] < last_interval[1]:
