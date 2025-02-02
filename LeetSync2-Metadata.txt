@@ -35,3 +35,4 @@
 846-hand-of-straights|Medium|1737936000000
 133-clone-graph|Medium|1738022400000
 435-non-overlapping-intervals|Medium|1738195200000
+371-sum-of-two-integers|Medium|1738454400000
