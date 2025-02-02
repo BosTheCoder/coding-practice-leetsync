@@ -36,3 +36,4 @@
 133-clone-graph|Medium|1738022400000
 435-non-overlapping-intervals|Medium|1738195200000
 371-sum-of-two-integers|Medium|1738454400000
+1742-maximum-number-of-balls-in-a-box|Easy|1738454400000
