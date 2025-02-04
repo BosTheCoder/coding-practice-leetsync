@@ -40,3 +40,4 @@
 66-plus-one|Easy|1738454400000
 416-partition-equal-subset-sum|Medium|1738540800000
 743-network-delay-time|Medium|1738627200000
+1448-count-good-nodes-in-binary-tree|Medium|1738627200000
