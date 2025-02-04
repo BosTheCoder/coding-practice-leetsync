@@ -39,3 +39,4 @@
 1742-maximum-number-of-balls-in-a-box|Easy|1738454400000
 66-plus-one|Easy|1738454400000
 416-partition-equal-subset-sum|Medium|1738540800000
+743-network-delay-time|Medium|1738627200000
