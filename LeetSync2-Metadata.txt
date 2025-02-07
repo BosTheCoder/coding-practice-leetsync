@@ -43,3 +43,4 @@
 1448-count-good-nodes-in-binary-tree|Medium|1738627200000
 2-add-two-numbers|Medium|1738627200000
 739-daily-temperatures|Medium|1738800000000
+50-powx-n|Medium|1738886400000
