@@ -45,3 +45,4 @@
 739-daily-temperatures|Medium|1738800000000
 50-powx-n|Medium|1738886400000
 297-serialize-and-deserialize-binary-tree|Hard|1738972800000
+239-sliding-window-maximum|Hard|1739059200000
