@@ -48,3 +48,4 @@
 239-sliding-window-maximum|Hard|1739059200000
 15-3sum|Medium|1739145600000
 853-car-fleet|Medium|1739232000000
+128-longest-consecutive-sequence|Medium|1739318400000
