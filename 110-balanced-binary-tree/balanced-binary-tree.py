@@ -10,14 +10,16 @@ class Solution:
             if not node:
                 return True, 0
             
+            left_balanced, left_height = dfs(node.left)
+            if not left_balanced:
+                return False, -1
+            
             right_balanced, right_height = dfs(node.right)
             if not right_balanced:
                 return False, -1
 
-            left_balanced, left_height = dfs(node.left)
+            # print(node.val, "left", (left_balanced, left_height), "right", (right_balanced, right_height))
 
-            return (right_balanced and left_balanced and abs(left_height-right_height)<2, max(left_height, right_height) + 1)
-        
-        return dfs(root)[0]
-            
-
+            return abs(left_height - right_height) <= 1, max(left_height, right_height)+1
+        ret, _ = dfs(root)
+        return ret
