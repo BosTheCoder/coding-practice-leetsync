@@ -1,10 +1,10 @@
 class Solution:
     def reverseBits(self, n: int) -> int:
-        ans = 0
-        mask = 1
+        ret = 0
         for i in range(31):
-            ans |= (n & mask)
-            n >>= 1
-            ans <<= 1
-        ans |= (n & mask)
-        return ans
+            ret = ret | (n & 1)
+            n >>=1
+            ret <<=1
+        
+        ret = ret | (n & 1)
+        return ret
