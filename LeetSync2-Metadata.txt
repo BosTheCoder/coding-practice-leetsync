@@ -53,3 +53,4 @@
 219-contains-duplicate-ii|Easy|1739577600000
 572-subtree-of-another-tree|Easy|1740279600000
 703-kth-largest-element-in-a-stream|Easy|1740366000000
+347-top-k-frequent-elements|Medium|1740538800000
