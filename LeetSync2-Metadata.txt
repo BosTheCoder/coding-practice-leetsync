@@ -58,3 +58,4 @@
 518-coin-change-ii|Medium|1742688000000
 981-time-based-key-value-store|Medium|1742688000000
 198-house-robber|Medium|1742688000000
+1046-last-stone-weight|Easy|1742688000000
