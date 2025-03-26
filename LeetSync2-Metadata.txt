@@ -62,3 +62,4 @@
 238-product-of-array-except-self|Medium|1742688000000
 33-search-in-rotated-sorted-array|Medium|1742688000000
 79-word-search|Medium|1742774400000
+235-lowest-common-ancestor-of-a-binary-search-tree|Medium|1742947200000
