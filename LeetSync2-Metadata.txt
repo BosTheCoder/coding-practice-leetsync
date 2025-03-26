@@ -63,3 +63,4 @@
 33-search-in-rotated-sorted-array|Medium|1742688000000
 79-word-search|Medium|1742774400000
 235-lowest-common-ancestor-of-a-binary-search-tree|Medium|1742947200000
+55-jump-game|Medium|1742947200000
