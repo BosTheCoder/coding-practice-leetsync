@@ -9,9 +9,7 @@ class Solution:
         def dfs(curr):
             if not curr:
                 return None
-            temp = dfs(curr.left)
-            curr.left = dfs(curr.right)
-            curr.right = temp
+            curr.left, curr.right = dfs(curr.right), dfs(curr.left)
             return curr
 
         return dfs(root)
