@@ -1,22 +1,19 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        heap = []
         counts = Counter(nums)
-        r_counts = defaultdict(list) # reverse counts
-        for key,v in counts.items():
-            r_counts[v].append(key)
+        max_count = float("-inf")
+        for val, count in counts.items():
+            max_count = max(max_count, count)
+        
+        arr = [None] * (max_count+1)
+        for val, count in counts.items():
+            arr[count] = arr[count] + [val] if arr[count] else [val]
 
-        # start ptr at max value of reverse counts
-        ptr = max(r_counts.keys())  
         ret = []
-        while k and ptr>=0:
-            if len(r_counts[ptr]):
-                val = r_counts[ptr].pop()
-                ret.append(val)
-                k-=1
-            else:
-                ptr-=1
+        i = max_count
+        while len(ret) < k:
+            while arr[i] and len(ret) < k:
+                ret.append(arr[i].pop())
+            i -= 1
         return ret
-
-
-
-
