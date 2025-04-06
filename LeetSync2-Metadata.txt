@@ -67,3 +67,4 @@
 5-longest-palindromic-substring|Medium|1743375600000
 146-lru-cache|Medium|1743548400000
 105-construct-binary-tree-from-preorder-and-inorder-traversal|Medium|1743894000000
+226-invert-binary-tree|Easy|1743894000000
