@@ -68,3 +68,4 @@
 146-lru-cache|Medium|1743548400000
 105-construct-binary-tree-from-preorder-and-inorder-traversal|Medium|1743894000000
 226-invert-binary-tree|Easy|1743894000000
+332-reconstruct-itinerary|Hard|1743894000000
