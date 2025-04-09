@@ -1,7 +1,7 @@
 class Solution:
     def longestCommonSubsequence(self, text1: str, text2: str) -> int:
         # Using the length of text2 for the memoisation array so we want the smallest text1 to save space
-        if len(text1) > len(text2):
+        if len(text1) < len(text2):
             text1, text2 = text2, text1
 
         memo = [0] * (len(text1) + 1)
