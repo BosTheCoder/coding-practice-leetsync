@@ -1,43 +1,78 @@
+from dataclasses import dataclass
+
+@dataclass
 class Node:
-    def __init__(self, key, val):
-        self.key, self.val = key, val
-        self.prev = self.next = None
-
+    key: int
+    val: int = 0
+    next: Optional['Node'] = None
+    prev: Optional['Node'] = None
+    
 class LRUCache:
+
     def __init__(self, capacity: int):
-        self.cap = capacity
-        self.cache = {}  # map key to node
-
-        self.left, self.right = Node(0, 0), Node(0, 0)
-        self.left.next, self.right.prev = self.right, self.left
-
-    def remove(self, node):
-        prev, nxt = node.prev, node.next
-        prev.next, nxt.prev = nxt, prev
-
-    def insert(self, node):
-        prev, nxt = self.right.prev, self.right
-        prev.next = nxt.prev = node
-        node.next, node.prev = nxt, prev
+        self.head = Node(key=-1)
+        self.tail = Node(key=-2)
+        self.head.next, self.tail.prev = self.tail,self.head
+        self.hash = {}
+        self.capacity = capacity
 
     def get(self, key: int) -> int:
-        if key in self.cache:
-            self.remove(self.cache[key])
-            self.insert(self.cache[key])
-            return self.cache[key].val
+        if key in self.hash:
+            value = self.hash[key].val
+            # update the position of the node that's accessed
+            # it should be popped and added to the tail
+            # pop node
+            temp = self.hash[key]
+            temp.prev.next, temp.next.prev = temp.next, temp.prev
+
+            # add to tail
+            prev = self.tail.prev
+            prev.next, temp.prev = temp, prev
+            temp.next,self.tail.prev = self.tail, temp
+
+            return value
         return -1
+        
 
     def put(self, key: int, value: int) -> None:
-        if key in self.cache:
-            self.remove(self.cache[key])
-        self.cache[key] = Node(key, value)
-        self.insert(self.cache[key])
+        if key in self.hash:
+            self.hash[key].val = value
+            # you should also update the node here
 
-        if len(self.cache) > self.cap:
-            lru = self.left.next
-            self.remove(lru)
-            del self.cache[lru.key]
+            # it should be popped and added to the tail
+            # pop node
+            temp = self.hash[key]
+            temp.prev.next, temp.next.prev = temp.next, temp.prev
+
+            # add to tail
+            prev = self.tail.prev
+            prev.next, temp.prev = temp, prev
+            temp.next,self.tail.prev = self.tail, temp
+
+            return
+        # create new node
+        temp = Node(key=key,val=value)
+
+        # add it to hash
+        self.hash[key] = temp
         
+        # add node to tail
+        prev = self.tail.prev
+        prev.next, temp.prev = temp, prev
+        temp.next,self.tail.prev = self.tail, temp
+
+
+        # check if hash now exceeds capacity
+        if len(self.hash) > self.capacity:
+
+            # if it does delete the node from thehead and remove it from the hash
+            head_node = self.head.next
+            del self.hash[head_node.key]
+            head_plus_2 = self.head.next.next
+            self.head.next, head_plus_2.prev = head_plus_2, self.head
+
+
+
 
 
 # Your LRUCache object will be instantiated and called as such:
