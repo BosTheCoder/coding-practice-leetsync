@@ -74,3 +74,4 @@
 76-minimum-window-substring|Hard|1744239600000
 139-word-break|Medium|1744498800000
 167-two-sum-ii-input-array-is-sorted|Medium|1744498800000
+46-permutations|Medium|1744671600000
