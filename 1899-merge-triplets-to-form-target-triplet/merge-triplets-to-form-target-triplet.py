@@ -7,7 +7,6 @@ class Solution:
 
         count = 0
 
-        print(relevant)
         for i in range(3):
             if any([triplet[i] == target[i] for triplet in relevant]):
                 count+=1
