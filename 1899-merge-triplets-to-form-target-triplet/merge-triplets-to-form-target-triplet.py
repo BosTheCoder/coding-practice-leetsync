@@ -1,12 +1,17 @@
+from typing import List
+
 class Solution:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
-        count = [0,0,0]
+        good = [False, False, False]
         for triplet in triplets:
-            if not any(val>target[i] for i,val in enumerate(triplet)):
+            if all(triplet[i] <= target[i] for i in range(3)):
                 for i in range(3):
                     if triplet[i] == target[i]:
-                        count[i] +=1
-        return all(count[i] >= 1 for i in range(3))
+                        good[i] = True
+                if all(good):
+                    return True  # Early exit!
+        return all(good)
+
 """
 1,2,5
 
