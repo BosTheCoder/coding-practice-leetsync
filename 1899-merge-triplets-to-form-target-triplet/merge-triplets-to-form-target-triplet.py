@@ -1,15 +1,12 @@
 class Solution:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
-        relevant = []
+        count = [0,0,0]
         for triplet in triplets:
             if not any(val>target[i] for i,val in enumerate(triplet)):
-                relevant.append(triplet)
-        count = 0
-        for i in range(3):
-            if any(triplet[i] == target[i] for triplet in relevant):
-                count+=1
-
-        return count == 3
+                for i in range(3):
+                    if triplet[i] == target[i]:
+                        count[i] +=1
+        return all(count[i] >= 1 for i in range(3))
 """
 1,2,5
 
