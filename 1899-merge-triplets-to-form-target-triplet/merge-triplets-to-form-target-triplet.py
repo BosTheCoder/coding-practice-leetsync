@@ -2,11 +2,11 @@ class Solution:
     def mergeTriplets(self, triplets: List[List[int]], target: List[int]) -> bool:
         relevant = []
         for triplet in triplets:
-            if not any([val>target[i] for i,val in enumerate(triplet)]):
+            if not any(val>target[i] for i,val in enumerate(triplet)):
                 relevant.append(triplet)
         count = 0
         for i in range(3):
-            if any([triplet[i] == target[i] for triplet in relevant]):
+            if any(triplet[i] == target[i] for triplet in relevant):
                 count+=1
 
         return count == 3
