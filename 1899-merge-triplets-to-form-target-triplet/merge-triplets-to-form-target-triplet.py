@@ -4,9 +4,7 @@ class Solution:
         for triplet in triplets:
             if not any([val>target[i] for i,val in enumerate(triplet)]):
                 relevant.append(triplet)
-
         count = 0
-
         for i in range(3):
             if any([triplet[i] == target[i] for triplet in relevant]):
                 count+=1
