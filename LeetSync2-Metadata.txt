@@ -77,3 +77,4 @@
 46-permutations|Medium|1744671600000
 1899-merge-triplets-to-form-target-triplet|Medium|1744758000000
 695-max-area-of-island|Medium|1744844400000
+199-binary-tree-right-side-view|Medium|1744844400000
