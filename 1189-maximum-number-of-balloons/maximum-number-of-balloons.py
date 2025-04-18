@@ -1,17 +1,13 @@
 class Solution:
     def maxNumberOfBalloons(self, text: str) -> int:
+        ref_word = "balloon"
+        ref_counts = Counter(ref_word)
         counts = Counter(text)
-        instances = 0
-        while True:
-            found = True
-            for c in "balloon":
-                counts[c] = counts.get(c,0) -1
-                if counts[c] <0:
-                    found = False
-            if found:
-                instances += 1
-            else:
-                break
-        return instances
+
+        # adjust counts
+        for c, count in ref_counts.items():
+            counts[c] = counts.get(c,0)//count
+
+        return min(counts.get(c,0) for c in ref_word)
 
 
