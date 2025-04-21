@@ -82,3 +82,4 @@
 1413-minimum-value-to-get-positive-step-by-step-sum|Easy|1744930800000
 1004-max-consecutive-ones-iii|Medium|1744930800000
 210-course-schedule-ii|Medium|1745103600000
+36-valid-sudoku|Medium|1745190000000
