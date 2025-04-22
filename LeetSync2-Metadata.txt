@@ -84,3 +84,4 @@
 210-course-schedule-ii|Medium|1745103600000
 36-valid-sudoku|Medium|1745190000000
 323-number-of-connected-components-in-an-undirected-graph|Medium|1745190000000
+2434-using-a-robot-to-print-the-lexicographically-smallest-string|Medium|1745276400000
