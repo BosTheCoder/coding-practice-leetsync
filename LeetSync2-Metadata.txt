@@ -86,3 +86,4 @@
 323-number-of-connected-components-in-an-undirected-graph|Medium|1745190000000
 2434-using-a-robot-to-print-the-lexicographically-smallest-string|Medium|1745276400000
 1063-number-of-valid-subarrays|Hard|1745449200000
+143-reorder-list|Medium|1745535600000
