@@ -88,3 +88,4 @@
 1063-number-of-valid-subarrays|Hard|1745449200000
 143-reorder-list|Medium|1745535600000
 684-redundant-connection|Medium|1745794800000
+261-graph-valid-tree|Medium|1746226800000
