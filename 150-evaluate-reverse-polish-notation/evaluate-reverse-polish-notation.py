@@ -16,5 +16,4 @@ class Solution:
                         stack.append(val1 * val2)
                     case "/":
                         stack.append(int(val1 / val2))
-                print(val1, token, val2)
         return stack[0]
