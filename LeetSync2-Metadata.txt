@@ -91,3 +91,4 @@
 261-graph-valid-tree|Medium|1746226800000
 150-evaluate-reverse-polish-notation|Medium|1746313200000
 138-copy-list-with-random-pointer|Medium|1746313200000
+22-generate-parentheses|Medium|1746399600000
