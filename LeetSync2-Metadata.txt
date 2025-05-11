@@ -94,3 +94,4 @@
 22-generate-parentheses|Medium|1746399600000
 127-word-ladder|Hard|1746658800000
 621-task-scheduler|Medium|1746918000000
+2365-task-scheduler-ii|Medium|1746918000000
