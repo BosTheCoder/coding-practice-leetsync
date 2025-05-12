@@ -95,3 +95,4 @@
 127-word-ladder|Hard|1746658800000
 621-task-scheduler|Medium|1746918000000
 2365-task-scheduler-ii|Medium|1746918000000
+268-missing-number|Easy|1747004400000
