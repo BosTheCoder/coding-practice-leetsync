@@ -1,7 +1,5 @@
 class Solution:
     def missingNumber(self, nums: List[int]) -> int:
-        max_num = max(nums)
-
         curr = 0
         # xor all nums in the array
         for num in nums:
