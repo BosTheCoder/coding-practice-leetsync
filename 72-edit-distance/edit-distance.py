@@ -14,14 +14,13 @@ class Solution:
 
         for j in range(height-2,-1,-1):
             for i in range(width-2,-1,-1):
-                tmp = float("inf")
-                if word1[j] == word2[i]:
-                    tmp = memo[j+1][i+1]
+                # tmp = float("inf")
+                # if word1[j] == word2[i]:
+                #     tmp = memo[j+1][i+1]
 
                 memo[j][i] = min(
                     1 + memo[j+1][i+1],
                     1 + memo[j+1][i],
                     1 + memo[j][i+1],
-                    tmp
-                )
+                )  if word1[j] != word2[i] else memo[j+1][i+1]
         return memo[0][0]
