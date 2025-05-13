@@ -1,5 +1,7 @@
 class Solution:
     def minDistance(self, word1: str, word2: str) -> int:
+        if len(word1) > len(word2):
+            word1, word2 = word2, word1
         width, height = len(word2)+1, len(word1)+1
         memo = [[0]*width for _ in range(height)]
 
@@ -14,10 +16,6 @@ class Solution:
 
         for j in range(height-2,-1,-1):
             for i in range(width-2,-1,-1):
-                # tmp = float("inf")
-                # if word1[j] == word2[i]:
-                #     tmp = memo[j+1][i+1]
-
                 memo[j][i] = min(
                     1 + memo[j+1][i+1],
                     1 + memo[j+1][i],
