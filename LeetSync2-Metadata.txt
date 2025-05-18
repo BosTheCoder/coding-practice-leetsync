@@ -98,3 +98,4 @@
 268-missing-number|Easy|1747004400000
 72-edit-distance|Medium|1747090800000
 875-koko-eating-bananas|Medium|1747263600000
+287-find-the-duplicate-number|Medium|1747522800000
