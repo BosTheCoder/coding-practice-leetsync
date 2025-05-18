@@ -14,8 +14,9 @@ class Solution:
             # print(f"after union {parent} {rank}")
 
         def find(node):
-            if parent[node] !=node:
-                parent[node] = find(parent[node])
+            while parent[node] !=node:
+                parent[node] = parent[parent[node]]
+                node = parent[node]
             return parent[node]
         
         for node1, node2 in edges:
@@ -26,6 +27,4 @@ class Solution:
             
             union(parent1,parent2)
         return [-1,-1]
-        
-
         
