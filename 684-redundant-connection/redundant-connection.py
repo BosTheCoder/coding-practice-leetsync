@@ -1,34 +1,31 @@
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        num_nodes = len(edges)
-        parent = [i for i in range(num_nodes)]
-        rank = [1] * num_nodes
-        
-        def find(n):
-            node = n-1
-            while parent[node] != parent[parent[node]]:
-                parent[node] = parent[parent[node]]
-            return parent[node] + 1
+        parent = [i for i in range(len(edges) + 1)]
+        rank = [1 for i in range(len(edges) + 1)]
 
-        def union(n1, n2):
-            node1, node2 = n1-1, n2-1
-
+        def union(node1, node2):
+            # print(f"before union {parent} {rank}")
             if rank[node1] > rank[node2]:
-                rank[node1] += rank[node2]
                 parent[node2] = node1
+                rank[node1] += rank[node2]
             else:
-                rank[node2] += rank[node2]
                 parent[node1] = node2
+                rank[node2] += rank[node1]
+            # print(f"after union {parent} {rank}")
 
+        def find(node):
+            if parent[node] !=node:
+                parent[node] = find(parent[node])
+            return parent[node]
         
-        for n1,n2 in edges:
-            p1, p2 = find(n1), find(n2)
-            if p1 == p2:
-                return [n1, n2]
+        for node1, node2 in edges:
+            parent1, parent2 = find(node1), find(node2)
+            # print(parent1, parent2)
+            if parent1 == parent2:
+                return [node1,node2]
             
-            union(p1, p2)
+            union(parent1,parent2)
+        return [-1,-1]
         
-        return []
 
-
-
+        
