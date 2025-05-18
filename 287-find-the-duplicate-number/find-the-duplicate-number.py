@@ -2,12 +2,10 @@ class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
         fast, slow = 0,0
 
-        def nxt(i):
-            return nums[i]
         
         while True:
-            fast = nxt(nxt(fast))
-            slow = nxt(slow)
+            fast = nums[nums[fast]]
+            slow = nums[slow]
             if fast == slow:
                 break
         
@@ -15,7 +13,7 @@ class Solution:
 
         fast = 0
         while fast != slow:
-            fast = nxt(fast)
-            slow = nxt(slow)
+            fast = nums[fast]
+            slow = nums[slow]
         
         return fast
