@@ -1,7 +1,7 @@
 class Solution:
     def eraseOverlapIntervals(self, intervals: List[List[int]]) -> int:
         prev_end = float("-inf")
-        intervals.sort()
+        intervals.sort(key=lambda x: x[1])
         total = 0
         for start,end in intervals:
             if start>= prev_end:
