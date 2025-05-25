@@ -1,28 +1,33 @@
 class Solution:
     def countBits(self, n: int) -> List[int]:
-        dp = [0] * (n+1)
-        marker = 1
-        for i in range(1, n+1):
-            if i == marker*2:
-                marker *= 2
-            # print(i, marker, dp)
-            dp[i] = 1 + dp[i-marker]
-            
-        return dp
+        
+        ret = [0] * (n+1) 
+        target = 1 
+        counter = 0 
+        for i in range(1,n+1):
+            if counter == target:   
+                target *= 2
+                counter = 0
+        
+            ret[i] = 1 + ret[counter]
 
+            counter += 1
+        
+        return ret
+
+
+        
 """
-maker = 2
-when i = marker, marker *= 2
-
-0: 0000 0
-1: 0001 = 1 + dp[1-1]
-2: 0010 = 1 + dp[2-2] = 1
-3: 0011 = 1 + dp[3-2] = 1+1 = 2
-4: 0100 = 1 + dp[4-4] = 0
-5: 0101 = 1 + dp[5-4] = 2
-6: 0110 = 1 + dp[6-4] = 2
-7: 0111 = 1 + dp[7-4] = 3
-8: 1000 = 1 + dp[8-8] = 1
-9: 1001 = 1 + dp[9-8] = 2
-...
+0 0
+1 1    = 1 + m[0]    = bin(1) + m[0]
+2 10   = 10 + m[0]   = bin(2) + m[0]
+3 11   = 10 + m[1]   = bin(2) + m[1]
+4 100  = 100 + m[0]  = bin(4) + m[0]
+5 101  = 100 + m[1]  = bin(4) + m[1]
+6 110  = 100 + m[2]  = bin(4) + m[2]
+7 111  = 100 + m[3]  = bin(4) + m[3]
+8 1000 = 1000 + m[0] = bin(8) + m[0]
+9 1001
+10 1010
+11 1011
 """
