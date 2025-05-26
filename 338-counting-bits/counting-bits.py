@@ -1,15 +1,9 @@
 class Solution:
     def countBits(self, n: int) -> List[int]:
-        ret = [0] * (n+1)
         mult = 1
-        counter = 0
+        ret = [0] * (n+1)
         for i in range(1, n+1):
-            if counter == mult:
+            if mult * 2 == i:
                 mult *= 2
-                counter = 0
-            
-            ret[i] = 1 + ret[counter]
-
-            counter+=1
-        
+            ret[i] = 1 + ret[i-mult]
         return ret
