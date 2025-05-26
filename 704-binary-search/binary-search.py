@@ -1,7 +1,14 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        x= bisect.bisect_right(nums, target)
-        # print(x)
-        if x-1>len(nums) or nums[x-1]!=target:
-            return -1
-        return x-1
+        l,r = 0, len(nums)-1
+
+        while r >= l:
+            m = (l + r)//2
+            if nums[m] == target:
+                return m
+            elif nums[m] > target:
+                r = m-1
+            elif nums[m] < target:
+                l = m + 1
+        
+        return -1
