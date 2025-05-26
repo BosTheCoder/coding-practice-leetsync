@@ -1,30 +1,13 @@
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        lowest = min(nums)
-        largest = max(nums)
-        size = largest - lowest + 1
-        arr = [None] * size
+        heap = []
         for num in nums:
-            ix = num - lowest
-            if arr[ix] is None:
-                arr[ix] = (num,0)
-            else:
-                _,curr = arr[ix]
-                arr[ix] = (num, curr+1)
+            if len(heap) == k and num < heap[0]:
+                continue
 
-        end = len(arr) -1
-        curr = None
-        while k > 0 and end >= 0:
-            if arr[end] is not None:
-                _, num_values = arr[end]
-                while num_values > 0 and k>0:
-                    k -= 1
-                    curr = arr[end]
-                    num_values -= 1
-                k -= 1
-                curr = arr[end]
-            end -= 1
-        return curr[0]
+            heapq.heappush(heap, num)
 
-
-
+            if len(heap) > k:
+                heapq.heappop(heap)
+        
+        return heapq.heappop(heap)
