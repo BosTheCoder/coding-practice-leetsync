@@ -1,29 +1,20 @@
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        heap = []
+        output = []
+        q = deque()  # index
+        l = r = 0
 
-        # Add all values to heap apart from last one
-        for i in range(k-1):
-            # making a max heap
-            heapq.heappush(heap,(-nums[i],i))
-        # print(f"heap is {heap}")
-        ret = []
-        for start in range(len(nums)-k+1):
-            # add the new value to the heap
-            end = start + k -1
-            heapq.heappush(heap, (-nums[end],end))
-            # print(f"new value {-nums[end]} added to heap. heap is now {heap}")
+        while r < len(nums):
+            while q and nums[q[-1]] < nums[r]:
+                q.pop()
+            q.append(r)
 
-            # if max value in the heap is old, get rid of it
-            while heap[0][1] < start:
-                heapq.heappop(heap)
-            
-            maximum = -heap[0][0]
-            ret.append(maximum)
-        
-        # print(ret)
-        return ret
+            if l > q[0]:
+                q.popleft()
 
+            if (r + 1) >= k:
+                output.append(nums[q[0]])
+                l += 1
+            r += 1
 
-
-        
+        return output
