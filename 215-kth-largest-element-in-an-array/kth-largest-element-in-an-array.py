@@ -1,39 +1,27 @@
-import random
-from typing import List
-
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        # we want the element whose rank in *descending* order is k-1
-        target = k - 1
-        lo, hi = 0, len(nums) - 1
+        
+        def qs(arr, k):
+            # get random pivot
+            pivot = random.choice(arr)
 
-        while True:
-            # 1. choose a random pivot, swap it to the front for convenience
-            pivot_idx = random.randint(lo, hi)
-            pivot = nums[pivot_idx]
-            nums[pivot_idx], nums[lo] = nums[lo], nums[pivot_idx]
+            greater, lesser, equal = [],[],[]
 
-            # 2. 3-way in-place partition:   >pivot | =pivot | <pivot
-            gt, i, lt = lo, lo, hi                     # gt: next slot for >pivot
-            while i <= lt:
-                if nums[i] > pivot:                    # belongs in “greater”
-                    nums[i], nums[gt] = nums[gt], nums[i]
-                    gt += 1
-                    i += 1
-                elif nums[i] < pivot:                  # belongs in “less”
-                    nums[i], nums[lt] = nums[lt], nums[i]
-                    lt -= 1
-                else:                                  # equal to pivot
-                    i += 1
+            for num in arr:
+                if num > pivot:
+                    greater.append(num)
+                elif num == pivot:
+                    equal.append(num)
+                else:
+                    lesser.append(num)
+            
+            # Figure out where the kth largest element is
 
-            # array now looks like:  [lo .. gt-1]  >p  |  [gt .. lt]  =p  |  [lt+1 .. hi]  <p
-            left_size   = gt - lo          # number of >pivot elements
-            mid_size    = lt - gt + 1      # number of =pivot elements
-
-            if target < left_size:         # k-th largest is in the “greater” block
-                hi = gt - 1
-            elif target >= left_size + mid_size:
-                lo = lt + 1
-                target -= left_size + mid_size
-            else:                          # inside the “equal” block → found it
+            if k <=len(greater):
+                return qs(greater,k)
+            elif k> len(greater) + len(equal):
+                return qs(lesser,k-len(greater)-len(equal))
+            else:
                 return pivot
+
+        return qs(nums,k)
