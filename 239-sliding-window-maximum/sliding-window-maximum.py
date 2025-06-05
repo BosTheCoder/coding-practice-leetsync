@@ -1,20 +1,20 @@
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
-        output = []
-        q = deque()  # index
-        l = r = 0
+        q = Deque()
+        ret = []
 
-        while r < len(nums):
-            while q and nums[q[-1]] < nums[r]:
-                q.pop()
-            q.append(r)
-
-            if l > q[0]:
+        for i, num in enumerate(nums):
+            # if i == the delete point stored with the current max, popleft the max
+            if q and q[0][1] == i:
                 q.popleft()
 
-            if (r + 1) >= k:
-                output.append(nums[q[0]])
-                l += 1
-            r += 1
+            # while new num > end of q, pop the end of the queue. Then you can add new num
+            while q and num>q[-1][0]:
+                q.pop()
+            q.append((num, i+k))
 
-        return output
+            # Save max
+            if i>=k-1:
+                ret.append(q[0][0])
+
+        return ret
