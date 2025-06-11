@@ -103,3 +103,4 @@
 73-set-matrix-zeroes|Medium|1747782000000
 57-insert-interval|Medium|1747868400000
 295-find-median-from-data-stream|Hard|1748818800000
+778-swim-in-rising-water|Hard|1749596400000
