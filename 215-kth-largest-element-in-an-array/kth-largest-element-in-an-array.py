@@ -1,27 +1,22 @@
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
         
-        def qs(arr, ix):
+        def qs(arr, v):
+            left, mid, right = [],[],[]
             pivot = random.choice(arr)
-            larger, smaller, equal = [],[],[]
             for num in arr:
-                if num<pivot:
-                    smaller.append(num)
-                elif num == pivot:
-                    equal.append(num)
+                if num == pivot:
+                    mid.append(num)
+                elif num>pivot:
+                    left.append(num)
                 else:
-                    larger.append(num)
+                    right.append(num)
 
-
-            len_of_larger = len(larger)
-            if ix <= len_of_larger:
-                return qs(larger,ix)
-            
-            len_of_combined = len_of_larger + len(equal)
-            if ix > len_of_combined:
-                return qs(smaller, ix - len_of_combined)
-            
-            return pivot
-        
+            if v <= len(left):
+                return qs(left, v)
+            if v > len(left) + len(mid):
+                return qs(right,v-len(left)-len(mid))
+            else:
+                return mid[0]
 
         return qs(nums,k)
