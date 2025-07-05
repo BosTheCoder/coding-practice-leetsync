@@ -1,34 +1,44 @@
-from heapq import heappush, heappop
-from typing import List, Optional
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 
-class ListNode:
-    def __init__(self, val: int = 0, next: 'Optional[ListNode]' = None):
-        self.val  = val
-        self.next = next
-    def __lt__(self, other):          # needed only if you store nodes directly
-        return self.val < other.val
 
-class Solution:
-    def mergeKLists(
-        self,
-        lists: List[Optional[ListNode]]
-    ) -> Optional[ListNode]:
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
 
-        dummy = ListNode()             # sentinel head
-        tail  = dummy
-        heap  = []                     # (value, list_index, node)
+class NodeWrapper:
+    def __init__(self, node):
+        self.node = node
 
-        # 1. Seed the heap with the first node of each non-empty list
-        for i, node in enumerate(lists):
-            if node:
-                heappush(heap, (node.val, i, node))
+    def __lt__(self, other):
+        return self.node.val < other.node.val
 
-        # 2. Pop the smallest current node, push its successor
-        while heap:
-            val, i, node = heappop(heap)
-            tail.next = node           # append to merged list
-            tail      = tail.next
-            if node.next:              # put next element from the same list into heap
-                heappush(heap, (node.next.val, i, node.next))
+class Solution:    
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        if len(lists) == 0:
+            return None
 
-        return dummy.next
+        res = ListNode(0)
+        cur = res
+        minHeap = []
+
+        for lst in lists:
+            if lst is not None:
+                heapq.heappush(minHeap, NodeWrapper(lst))
+
+        while minHeap:
+            node_wrapper = heapq.heappop(minHeap)
+            cur.next = node_wrapper.node
+            cur = cur.next
+            
+            if node_wrapper.node.next:
+                heapq.heappush(minHeap, NodeWrapper(node_wrapper.node.next))
+        
+        return res.next
+            
+
