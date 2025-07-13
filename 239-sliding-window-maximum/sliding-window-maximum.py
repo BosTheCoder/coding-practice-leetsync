@@ -4,7 +4,7 @@ class Solution:
         maxw = [0] * (len(nums)-k+1)
 
         for i,num in enumerate(nums):
-            while q and q[0][1] <= i:
+            if q and q[0][1] <= i:
                 q.popleft()
             
             while q and q[-1][0] <= num:
