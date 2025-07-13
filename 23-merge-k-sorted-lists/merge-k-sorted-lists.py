@@ -4,53 +4,41 @@
 #         self.val = val
 #         self.next = next
 
+class HeapNode(ListNode):
+    def __init__(self, node):
+        super().__init__(node.val, node.next)
+    
+    def __lt__(self, heap_node):
+        return self.val < heap_node.val
 
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
-
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, val=0, next=None):
-#         self.val = val
-#         self.next = next
 
 class Solution:
-    def mergeKLists(self, lists):
-        if not lists or len(lists) == 0:
-            return None
-        return self.divide(lists, 0, len(lists) - 1)
+    
 
-    def divide(self, lists, l, r):
-        if l > r:
-            return None
-        if l == r:
-            return lists[l]
 
-        mid = l + (r - l) // 2
-        left = self.divide(lists, l, mid)
-        right = self.divide(lists, mid + 1, r)
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        heap = []
+        curr = dummy = ListNode()
+        
+        for node in lists:
+            if node is None:
+                continue
+            
+            heap_node = HeapNode(node)
+            heapq.heappush(heap, heap_node)
+        
 
-        return self.conquer(left, right)
+        while heap:
+            next = heapq.heappop(heap)
 
-    def conquer(self, l1, l2):
-        dummy = ListNode(0)
-        curr = dummy
-
-        while l1 and l2:
-            if l1.val <= l2.val:
-                curr.next = l1
-                l1 = l1.next
-            else:
-                curr.next = l2
-                l2 = l2.next
-            curr = curr.next
-
-        if l1:
-            curr.next = l1
-        else:
-            curr.next = l2
-
+            # add the nodes next value to the heap
+            if next.next is not None:
+                heapq.heappush(heap, HeapNode(next.next))
+            
+            # update pointers
+            curr.next = next
+            curr = next
+        
         return dummy.next
+
+        
