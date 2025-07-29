@@ -1,19 +1,21 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
-        count = 0
+        ret = 0
         for i in range(len(s)):
+            # odd length palindromes
+            l = r = i
             
-            # start with one val
-            left = right = i
-            while left >= 0 and right <len(s) and s[left] == s[right]:
-                count += 1
-                left -= 1
-                right += 1
+            while l >= 0 and r <len(s) and s[l]==s[r]:
+                ret +=1
+                l -= 1
+                r += 1
+                
+        
+            l, r = i, i+1
 
-            # start with 2 values
-            left, right = i, i + 1
-            while left >= 0 and right <len(s) and s[left] == s[right]:
-                count += 1
-                left -= 1
-                right += 1
-        return count
+            while l >= 0 and r <len(s) and s[l]==s[r]:
+                ret +=1
+                l -= 1
+                r += 1
+
+        return ret 
