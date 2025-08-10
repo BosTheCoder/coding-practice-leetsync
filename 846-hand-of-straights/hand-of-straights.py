@@ -1,39 +1,27 @@
 class Solution:
     def isNStraightHand(self, hand: List[int], groupSize: int) -> bool:
+        num_groups = len(hand)/groupSize
+        if num_groups % 1 != 0:
+            return False
+
+        num_groups = int(num_groups)
         hand.sort()
-        groups = []
-        for card in hand:
-            suitable_group_ix = -1
-            for ix, group in enumerate(groups):
-                if card == group[-1]: 
+        
+        arr = [[] for i in range(num_groups)]
+
+        for i,card in enumerate(hand):
+            appended = False
+            for group in range(num_groups):
+                if len(arr[group]) == groupSize:
                     continue
-                if card != group[-1] + 1:
+                if (
+                    len(arr[group]) == 0
+                    or
+                    (len(arr[group]) > 0 and arr[group][-1] == card-1)
+                ):
+                    arr[group].append(card)
+                    appended = True
                     break
-                group.append(card)
-                suitable_group_ix = ix
-                break
-
-            if suitable_group_ix == -1:
-                groups.append([card])
-                suitable_group_ix = len(groups) - 1
-            
-            if len(groups[suitable_group_ix]) == groupSize:
-                del groups[suitable_group_ix]
-                
-        # print(groups)
-        return len(groups) == 0
-
-
-"""
-sort list first
-
-figuring out which group to add the next number in the hand
-- is the current group already finished
-- is the number being added the same as the last one in the group?
-  - if so skip group
-- is the numner being added consecutive as the last one in the group?
-  - If not skip group
-- if no other groups then just start a new one
-
-f there's anything left in groups thne false
-"""
+            if not appended:
+                return False
+        return all(len(a)==groupSize for a in arr)    
