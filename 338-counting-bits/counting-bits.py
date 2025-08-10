@@ -1,13 +1,31 @@
 class Solution:
     def countBits(self, n: int) -> List[int]:
-        ret = [0] * (n+1)
-        nextstep = 2
-        delta = 0
-        for i in range(1, n+1):
-            if i == nextstep:
-                delta = nextstep
-                nextstep *= 2
+        """
+        0 = 0
+        01 = 1
+        10 = 2
+        11 =
 
-            ret[i] = 1 + ret[i-delta] 
-        
-        return ret
+        """
+        nums = [0] * (n+1)
+        for i in range(n+1):
+            s = str(bin(i))[2:]
+            num_ones = len([c for c in s if c == "1"])
+            nums[i] = num_ones
+        return nums
+
+
+"""
+0 0
+1 1
+2 10
+3 11
+4 100
+5 101
+6 110
+7 111
+8 1000
+9 1001
+
+
+"""
