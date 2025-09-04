@@ -1,15 +1,23 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        # memoization arrays
-        b = [0,0]
-        s = 0
+        dp = {} # (i, buying)
 
-        for i in range(len(prices)-1,-1,-1):
-            price = prices[i]
+        def dfs(i, buying):
+            if i >= len(prices):
+                return 0
+            if (i, buying) in dp:
+                return dp[(i,buying)]
             
-            b_new = max(s - price,b[0])
-            s_new = max(b[1] +price, s)
+            cool = dfs(i+1, buying)
 
-            b = [b_new, b[0]]
-            s = s_new
-        return b[0]
+            if buying:
+                buy = -prices[i] + dfs(i+1, False)
+                dp[(i,buying)] = max(buy, cool)
+            else:
+                sell = prices[i] + dfs(i+2, True)
+                dp[(i,buying)] = max(sell, cool)
+            
+            return dp[(i,buying)]
+        
+        return dfs(0,True)
+
