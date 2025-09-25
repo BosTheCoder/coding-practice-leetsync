@@ -1,23 +1,26 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        dp = {} # (i, buying)
-
-        def dfs(i, buying):
-            if i >= len(prices):
+        memo = {}
+        def dfs(i:int,buying:bool):
+            if i >=len(prices):
                 return 0
-            if (i, buying) in dp:
-                return dp[(i,buying)]
-            
-            cool = dfs(i+1, buying)
-
+            if (i,buying) in memo:
+                return memo[(i,buying)]
+    
+            cooldown = dfs(i+1,buying)
             if buying:
-                buy = -prices[i] + dfs(i+1, False)
-                dp[(i,buying)] = max(buy, cool)
+                buy = dfs(i+1,not buying) -prices[i]
+                memo[(i,buying)] = max(
+                    cooldown,
+                    buy
+                )
             else:
-                sell = prices[i] + dfs(i+2, True)
-                dp[(i,buying)] = max(sell, cool)
-            
-            return dp[(i,buying)]
+                sell = dfs(i+2, not buying) + prices[i]
+                memo[(i,buying)] = max(
+                    cooldown,
+                    sell
+                )
+            return memo[(i,buying)]
+
         
         return dfs(0,True)
-
