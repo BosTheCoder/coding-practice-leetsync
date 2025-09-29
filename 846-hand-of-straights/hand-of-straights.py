@@ -8,11 +8,13 @@ class Solution:
             val = heap[0]
             for i in range(groupSize):
                 curr = val + i
-                if curr not in counts: return False
+                if (
+                    curr not in counts or
+                    counts[curr] == 0
+                ): return False
 
                 counts[curr] -= 1
                 if counts[curr] == 0:
-                    del counts[curr]
                     if heap[0] == curr:
                         heapq.heappop(heap)
                     else:
