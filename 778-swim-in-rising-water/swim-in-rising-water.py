@@ -4,7 +4,7 @@ class Solution:
         n = len(grid)
         heap = [(grid[0][0],0,0)]
         heapq.heapify(heap)
-        seen = {}
+        seen = set()
         coords = [(0,1),(1,0),(-1,0),(0,-1)]
 
         while heap:
@@ -14,7 +14,7 @@ class Solution:
                 continue            
 
             # Add to seen
-            seen[(i,j)] = maximum
+            seen.add((i,j))
 
             if (i,j) == (n-1,n-1):
                 return maximum
