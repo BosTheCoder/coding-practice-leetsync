@@ -3,17 +3,17 @@ class Solution:
     def swimInWater(self, grid: List[List[int]]) -> int:
         n = len(grid)
         heap = [(grid[0][0],0,0)]
-        seen = set()
+        seen = [[False]*n for _ in range(n)]
         coords = [(0,1),(1,0),(-1,0),(0,-1)]
 
         while heap:
             maximum, i, j = heapq.heappop(heap)
             
-            if (i,j) in seen:
+            if seen[j][i]:
                 continue            
 
             # Add to seen
-            seen.add((i,j))
+            seen[j][i] = True
 
             if (i,j) == (n-1,n-1):
                 return maximum
