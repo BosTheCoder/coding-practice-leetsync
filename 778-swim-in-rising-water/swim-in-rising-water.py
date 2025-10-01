@@ -20,8 +20,8 @@ class Solution:
                 return maximum
             
             for coord in coords:
-                ni = coord[0] + i
-                nj = coord[1] + j
+                ni = coord[1] + i
+                nj = coord[0] + j
 
                 if (
                     ni <0 or ni>=n or
