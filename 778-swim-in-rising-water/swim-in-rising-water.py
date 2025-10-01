@@ -1,34 +1,74 @@
 class Solution:
+
     def swimInWater(self, grid: List[List[int]]) -> int:
-        heap = []
-        dirs = [(0,1),(1,0),(0,-1),(-1,0)]
-        height = width = len(grid)
-        heapq.heappush(heap, (grid[0][0],0,0)) # time, i, j
-        seen = set()
-        seen.add((0,0))
+        n = len(grid)
+        heap = [(grid[0][0],0,0)]
+        heapq.heapify(heap)
+        seen = {}
+        coords = [(0,1),(1,0),(-1,0),(0,-1)]
 
-        count = 0
         while heap:
-            count += 1
-            t, i, j = heapq.heappop(heap)
+            maximum, i, j = heapq.heappop(heap)
             
-            if (i,j) == (width-1, height-1):
-                return t
-            
-            for di, dj in dirs:
-                ni,nj = i+di, j+dj
+            if (i,j) in seen:
+                continue            
 
-                if ni>=width or ni<0 or nj>=height or nj <0 or (ni,nj) in seen:
+            # Add to seen
+            seen[(i,j)] = maximum
+
+            if (i,j) == (n-1,n-1):
+                return maximum
+            
+            for coord in coords:
+                ni = coord[0] + i
+                nj = coord[1] + j
+
+                if (
+                    ni <0 or ni>=n or
+                    nj <0 or nj>=n
+                ):
                     continue
-                
-                val = (max(t, grid[nj][ni]), ni, nj)
 
-                if (ni,nj) == (width-1,height-1):
-                    return val[0]
-                seen.add((ni,nj))
-                heapq.heappush(
-                    heap, 
-                    val
-                )
-        return None
+                new_maximum = max(maximum, grid[nj][ni])
+                heapq.heappush(heap,(new_maximum,ni,nj))
             
+        return False
+
+        
+
+
+    # def swimInWater(self, grid: List[List[int]]) -> int:
+    #     n = len(grid)
+    #     seen = [[0] * n for i in range(n)]
+    #     coords = [(0,1),(1,0),(-1,0),(0,-1)]
+
+    #     def dfs(i, j, curr_max):          
+    #         if i == n-1 and j == n-1:
+    #             return curr_max
+            
+    #         curr_max = max(
+    #             grid[j][i],
+    #             curr_max
+    #         )
+
+    #         min_val = float("inf")
+    #         for coord in coords:
+    #             ni = coord[0] + i
+    #             nj = coord[1] + j
+
+    #             if (
+    #                 ni <0 or ni>=n or
+    #                 nj <0 or nj>=n
+    #             ):
+    #                 continue
+                
+    #             min_val = min(
+    #                 min_val,
+    #                 dfs(ni,ni,curr_max)
+    #             )
+            
+    #         return min_val
+        
+    #     return dfs(0,0,0)
+
+
