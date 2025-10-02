@@ -3,35 +3,49 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
-class Solution:
-    class NodeWrapper:
-        def __init__(self, node: ListNode):
-            self.node = node
-        
-        def __lt__(self, other: 'NodeWrapper'):
-            return self.node.val < other.node.val
+
+class NodeWrapper:
+    def __init__(self, node: ListNode):
+        self.node = node
     
+    def __lt__(self, node_wrapper):
+        return self.node.val < node_wrapper.node.val
+
+    def __repr__(self):
+        return f"NodeWrapper(val:{self.node.val})"
+    
+class Solution:
     def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        
         heap = []
-        print("starting")
-        for list in lists:
+        
+        # initialise heap with first node in each list
+        for node in lists:
+            if not node:
+                continue
             
-            curr = list
-            print(f"working on curr {curr}")
-            while curr:
-                node_wrapper = self.NodeWrapper(curr)
-                heapq.heappush(heap, node_wrapper)
-                curr = curr.next
-        print(heap)
-
-        head= ListNode()
-        curr = head
-
+            # create wrapper and add to heap
+            node_wrapper = NodeWrapper(node)
+            heapq.heappush(heap, node_wrapper) 
+        
+        # create final list iteratively
+        dummy = ListNode()
+        curr = dummy
         while heap:
-            node = heapq.heappop(heap).node
+            node_wrapper = heapq.heappop(heap)
+            node = node_wrapper.node
+
+            # after popping add the next node back on if there is one
+            if node.next:
+                node_wrapper = NodeWrapper(node.next)
+                heapq.heappush(heap, node_wrapper)
+            
+            # Add original node to the list
+
             curr.next = node
             curr = curr.next
         
-        curr.next = None
+        return dummy.next
+
+            
         
-        return head.next
