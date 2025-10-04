@@ -8,21 +8,20 @@ class Solution:
     def isSubtree(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
         if not root and subRoot:
             return False
-        return (
-            self.is_tree(root, subRoot)
-            or self.isSubtree(root.left, subRoot)
-            or self.isSubtree(root.right, subRoot)
-        )
-
-        
-    
-    def is_tree(self,a, b):
-        if a is None and b is None:
+        return any((
+            self.sametree(root,subRoot),
+            self.isSubtree(root.left, subRoot),
+            self.isSubtree(root.right, subRoot)
+        ))
+    def sametree(self, m, s):
+        if not m and not s:
             return True
-        if a is None or b is None:
+        if m and not s:
             return False
-        return (
-            a.val == b.val 
-            and self.is_tree(a.left, b.left) 
-            and self.is_tree(a.right, b.right)
-        )
+        if not m and s:
+            return False
+        return all((
+            m.val == s.val,
+            self.sametree(m.left,s.left),
+            self.sametree(m.right,s.right)
+        ))
