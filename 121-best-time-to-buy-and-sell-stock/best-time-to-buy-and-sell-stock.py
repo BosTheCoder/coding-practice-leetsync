@@ -1,27 +1,16 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        memo = {}
-        def dfs(i,buying):
-            if (i,buying) in memo:
-                return memo[(i,buying)]
-            if buying is None:
-                return 0
-            if i>=len(prices):
-                return 0
-            
-            skip = dfs(i+1,buying)
+        if len(prices) == 1:    # len(prices) =6
+            return 0
+        left = 0   # 1
+        right = 0   # 3
+        maxp = 0    # 4
+        while right < len(prices):
+            if prices[left] > prices[right]:    # 7 > 7
+                left = right
 
-            if buying:
-                v =  max(
-                    skip,
-                    dfs(i+1, not buying) - prices[i]
-                )
-            else:
-                v = max(
-                    skip,
-                    dfs(i+1, None) + prices[i]
-                )
-            memo[(i,buying)] = v
-            return v
+            total = -prices[left] + prices[right]   # 
+            maxp = max(total,maxp)
+            right += 1
 
-        return dfs(0,True)
+        return maxp
