@@ -6,7 +6,6 @@ class Solution:
         while right <len(nums):
             
             curr += nums[right]
-            print(right, left,curr)
             while curr >= target:
                 
                 ret = min(ret, right-left+1)
