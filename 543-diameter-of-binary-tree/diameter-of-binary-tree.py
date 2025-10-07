@@ -4,19 +4,31 @@
 #         self.val = val
 #         self.left = left
 #         self.right = right
-class Solution(object):
-    def diameterOfBinaryTree(self, root):
-        """
-        :type root: TreeNode
-        :rtype: int
-        """
-        self.ans = 0
+class Solution:
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
         
-        def depth(p):
-            if not p: return 0
-            left, right = depth(p.left), depth(p.right)
-            self.ans = max(self.ans, left+right)
-            return 1 + max(left, right)
+        def dfs(node):
+            if not node:
+                return 0,0 # max height, max diameter
             
-        depth(root)
-        return self.ans
+            lh, ld = dfs(node.left)
+            rh, rd = dfs(node.right)
+            return (
+                max(lh, rh) + 1,
+                max(
+                    ld,
+                    rd,
+                    lh + rh + 1
+                )
+            )
+
+
+            
+            """
+            its either max height left + max height right
+            or its the max diameter at left node or max diameter at right node
+            """
+
+        
+        _, d = dfs(root)
+        return d-1
