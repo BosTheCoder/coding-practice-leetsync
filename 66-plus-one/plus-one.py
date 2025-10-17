@@ -1,17 +1,13 @@
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
-        carry = 1
-        q = Deque()
+        overflow = 1
+        q = deque([0] * len(digits))
         for i in range(len(digits)-1,-1,-1):
-            digit = digits[i]
-            digit += carry
+            total = overflow + digits[i]
+            q[i] = total % 10
+            overflow = total // 10
 
-            carry = max(digit - 9,0)
-            digit = digit % 10
+        if overflow:
+            q.appendleft(overflow)
 
-            q.appendleft(digit)
-        
-        if carry:
-            q.appendleft(carry)
-        
         return list(q)
