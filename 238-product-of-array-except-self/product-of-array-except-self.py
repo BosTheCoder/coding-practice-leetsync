@@ -1,23 +1,22 @@
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
-        backwards = [0] * len(nums)
-        forwards = [0] * len(nums)
-        prev = 1
-        for i, num in enumerate(nums):
-            backwards[i] = prev * num
-            prev = backwards[i]
-        
-        prev = 1
-        for i in range(len(nums)-1, -1, -1):
-            forwards[i] = prev * nums[i]
-            prev = forwards[i]
-        
-        def get(l, i):
-            if i >= len(l) or i < 0:
-                return 1
-            return l[i]
+        length = len(nums)
+        l = [0]*length
+        r = [0] * length
 
-        for i in range(len(nums)):
-            forwards[i] = get(forwards, i+1) * get(backwards, i-1)
-        
-        return forwards
+        l[0] = nums[0]
+        for i in range(1,length):
+            l[i] = l[i-1] * nums[i]
+
+
+        r[-1] = nums[-1]
+        for i in range(length-2,-1,-1):
+            r[i] = r[i+1] * nums[i]
+
+
+        prod = [0]* length
+        for i in range(1, length-1):
+            prod[i] = l[i-1] * r[i+1]
+        prod[0] = r[1]
+        prod[-1] = l[-2]
+        return prod
