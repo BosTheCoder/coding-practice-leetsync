@@ -1,17 +1,16 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
-        def squares(num):
-            digits = [int(d)*int(d) for d in list(str(num))]
-            return sum(digits)
-        
         seen = set()
-        while n != 1:
-            if n in seen:
+
+        while True:
+            s = str(n)
+            sq = [int(c)*int(c) for c in s]
+            su = sum(sq)
+            print(su)
+            if su == 1:
+                return True
+            if su in seen:
                 return False
-            seen.add(n)
-            n = squares(n)
-        
-        return True
-
-
-        
+            seen.add(su)
+            n = su
+        return False
