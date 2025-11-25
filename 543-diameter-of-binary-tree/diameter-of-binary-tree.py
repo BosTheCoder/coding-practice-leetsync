@@ -9,26 +9,23 @@ class Solution:
         
         def dfs(node):
             if not node:
-                return 0,0 # max height, max diameter
+                return -1,-1
             
-            lh, ld = dfs(node.left)
-            rh, rd = dfs(node.right)
-            return (
-                max(lh, rh) + 1,
-                max(
-                    ld,
-                    rd,
-                    lh + rh + 1
-                )
+            # get max length and the height
+            ml, hl = dfs(node.left)
+            mr, hr = dfs(node.right)
+
+            # Add 1 to the heights
+            hl += 1
+            hr += 1
+
+            ret =  (
+                max(ml, mr, hl + hr),
+                max(hl,hr)
             )
 
+            return ret
 
-            
-            """
-            its either max height left + max height right
-            or its the max diameter at left node or max diameter at right node
-            """
 
-        
-        _, d = dfs(root)
-        return d-1
+
+        return dfs(root)[0]
