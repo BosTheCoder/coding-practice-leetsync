@@ -1,8 +1,8 @@
 class Solution:
     def hammingWeight(self, n: int) -> int:
-        total = 0
-        while n>0:
-            lsb = n & 1
-            total += lsb
+        ret = 0
+        while n:
+            ret += n & 1
             n >>= 1
-        return total
+        
+        return ret
