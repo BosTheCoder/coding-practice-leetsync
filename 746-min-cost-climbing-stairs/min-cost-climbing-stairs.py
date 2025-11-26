@@ -13,9 +13,10 @@ class Solution:
         
         # return min(dfs(0), dfs(1))
 
-        memo = [0] * (len(cost)+2)
+        a, b = 0,0
 
         for i in range(len(cost)-1,-1,-1):
-            memo[i] = cost[i] + min(memo[i+1], memo[i+2])
+            temp = cost[i] + min(a, b)
+            a, b = temp, a
         
-        return min(memo[0], memo[1])
+        return min(a, b)
