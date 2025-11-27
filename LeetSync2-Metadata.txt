@@ -111,3 +111,4 @@
 169-majority-element|Easy|1759446000000
 209-minimum-size-subarray-sum|Medium|1759705200000
 2491-divide-players-into-teams-of-equal-skill|Medium|1763856000000
+49-group-anagrams|Medium|1764201600000
