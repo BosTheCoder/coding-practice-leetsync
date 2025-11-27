@@ -2,9 +2,8 @@ class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
         ret = defaultdict(list)
         for s in strs:
-            d = Counter(s)
-            d = tuple(sorted(tuple(d.items())))
-            ret[d].append(s)
+            ss = tuple(sorted(s))
+            ret[ss].append(s)
         
         return list(ret.values())
         
