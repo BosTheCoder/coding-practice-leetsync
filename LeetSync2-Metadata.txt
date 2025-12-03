@@ -113,3 +113,4 @@
 2491-divide-players-into-teams-of-equal-skill|Medium|1763856000000
 49-group-anagrams|Medium|1764201600000
 535-encode-and-decode-tinyurl|Medium|1764201600000
+424-longest-repeating-character-replacement|Medium|1764720000000
