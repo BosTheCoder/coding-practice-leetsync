@@ -21,7 +21,7 @@ class Solution:
             
             
             max_substring = max(max_substring, r-l+1)
-
+            if max_substring == len(s): return max_substring
             r += 1
         
         return max_substring
