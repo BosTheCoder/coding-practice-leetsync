@@ -114,3 +114,4 @@
 49-group-anagrams|Medium|1764201600000
 535-encode-and-decode-tinyurl|Medium|1764201600000
 424-longest-repeating-character-replacement|Medium|1764720000000
+567-permutation-in-string|Medium|1764720000000
