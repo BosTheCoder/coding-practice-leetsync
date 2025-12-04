@@ -1,30 +1,28 @@
 class Solution:
     def generateParenthesis(self, n: int) -> List[str]:
         ret = []
-
-        def dfs(curr:list[str], open: int, closed: int) -> None:
-            # print(open, closed, curr)
-            if not open:
-                curr.extend([")"]*closed)
-                ret.append("".join(curr))
-                # print(f"added to ret {''.join(curr)}")
-
-                for c in range(closed):
-                    curr.pop()
+        def dfs(arr:list, open:int):
+            # print(arr, open, len(arr), n* 2)
+            if len(arr) == n * 2:
+                if open == 0:
+                    ret.append("".join(arr))
                 return
             
-            # if theres enough open left, add a open bracket
-            curr.append("(")
-            dfs(curr, open-1,closed)
-            curr.pop()
+            if open < n:
+                # we can still add open brackets
+                arr.append("(")
+                open += 1
+                dfs(arr, open)
+                open-=1
+                arr.pop()
+            if open>0:
+                arr.append(")")
+                open -= 1
+                dfs(arr, open)
+                open += 1
+                arr.pop()
 
-            if closed > open:
-                curr.append(")")
-                dfs(curr, open, closed-1)
-                curr.pop()
 
-
-        
-        dfs([],n,n)
+        dfs([],0)
 
         return ret
