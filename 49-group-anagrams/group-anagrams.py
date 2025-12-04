@@ -1,12 +1,10 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        ret = defaultdict(list)
-        for s in strs:
-            ss = tuple(sorted(s))
-            ret[ss].append(s)
+        d = defaultdict(list)
+
+        for string in strs:
+            char_counts = Counter(string)
+            frozen_counts = tuple(sorted(tuple(char_counts.items())))
+            d[frozen_counts].append(string)
         
-        return list(ret.values())
-        
-        # ret[tuple({"a":1,"b":2})].append(1)
-        # ret[tuple({"b":2,"a":1})].append(1)
-        # print(ret)
+        return list(d.values())
