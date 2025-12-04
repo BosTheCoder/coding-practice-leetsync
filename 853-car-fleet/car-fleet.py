@@ -1,16 +1,19 @@
 class Solution:
     def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
-        cars = sorted(list(zip(position,speed)))
-        last_time = 0
-        ret = set()
-        for pos, s in reversed(cars):
-            time_taken_without_blocker = (target-pos)/s    # works because python int division is floor
-            time_taken_with_blocker = max(last_time, time_taken_without_blocker)
-            ret.add(time_taken_with_blocker)
-            last_time = time_taken_with_blocker
-        # print(ret)
-        return len(ret)
-
+        sps = sorted(zip(position,speed))  # sorted positions and speeds
+        # print(sps)
+        time = [0] * len(position)
+        for i,ps in enumerate(sps):
+            p, s = ps
+            time[i] = (target - p) / s
+        # print(time)
+        groups = 1
+        curr = time[-1]
+        # print("setting curr", curr)
+        for i in range(len(speed)-2, -1, -1):
+            if time[i] > curr:
+                groups+=1
+                curr = time[i]
+                # print("setting curr", curr)
         
-
-  
+        return groups
