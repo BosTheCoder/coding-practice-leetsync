@@ -3,8 +3,10 @@ class Solution:
         d = defaultdict(list)
 
         for string in strs:
-            char_counts = Counter(string)
-            frozen_counts = tuple(sorted(tuple(char_counts.items())))
+            counts = [0] * 26
+            for ch in string:
+                counts[ord(ch) - ord("a")] += 1
+            frozen_counts = tuple(counts)
             d[frozen_counts].append(string)
         
         return list(d.values())
