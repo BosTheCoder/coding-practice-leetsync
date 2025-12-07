@@ -1,28 +1,20 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        """
-        k = 2
-
-        """
-        l = 0   # 0
-        r = 0   # 0
-        d = [0]*26  # {}
-        max_substring = 0
-        while r<len(s):
-            c = s[r]
-            c_val = ord(c)-ord('A')
-            d[c_val] += 1
-
-            while (r-l+1) - max(d) > k:
-                c = s[l]
-                c_val = ord(c)-ord('A')
-                d[c_val] -= 1
-                l += 1
-            
-            
-            max_substring = max(max_substring, r-l+1)
-            if max_substring == len(s): return max_substring
-            r += 1
         
-        return max_substring
+        left =  0
+        arr = [0]*26
+        max_length = 0
+        for right, c in enumerate(s):
+            cix = ord(c) - ord("A")
+            arr[cix] += 1
+
+            # While the window is invalid
+            while (right - left + 1) - max(arr) > k:
+                left_cix = ord(s[left]) - ord("A")
+                arr[left_cix] -=1
+                left+=1
+            
+            max_length = max(max_length, right-left+1)
+        
+        return max_length
 
