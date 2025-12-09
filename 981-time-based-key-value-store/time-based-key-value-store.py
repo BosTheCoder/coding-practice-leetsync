@@ -1,24 +1,28 @@
 class TimeMap:
 
     def __init__(self):
-        self.timemap = {}
+        self.d = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        curr = self.timemap.setdefault(key, [])
-        curr.append((timestamp, value))
+        self.d[key].append((value,timestamp))
 
     def get(self, key: str, timestamp: int) -> str:
-        curr = self.timemap.get(key,[])
-        if not curr:
-            return ""
-
-        ix = bisect.bisect_left(curr, (timestamp,))
-        if ix>=len(curr) or curr[ix][0] > timestamp:
-            ix -= 1
+        arr = self.d[key]
         
-        if ix<0 or curr[ix][0] > timestamp:
-            return ""
-        return curr[ix][1]
+        l=0
+        r=len(arr)-1
+        while l<=r:
+            mid = l + (r-l)//2
+
+            mv, mt = arr[mid]
+            if mt == timestamp:
+                return mv
+            elif mt < timestamp:
+                l = mid + 1
+            else:
+                r = mid -1
+        
+        return arr[r][0] if r>=0 else ""
 
 
 # Your TimeMap object will be instantiated and called as such:
