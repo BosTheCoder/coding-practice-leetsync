@@ -35,7 +35,6 @@ class Solution:
             if xmin[x] >= y:
                 continue
 
-            print(x,y)
             ret += 1
         
         return ret
