@@ -1,19 +1,17 @@
 class Solution:
     def countCoveredBuildings(self, n: int, buildings: List[List[int]]) -> int:
-        xdict = defaultdict(list)
+
         xmax = defaultdict(lambda:-float("inf"))
         xmin = defaultdict(lambda:float("inf"))
 
-        ydict = defaultdict(list)
+
         ymax = defaultdict(lambda:-float("inf"))
         ymin = defaultdict(lambda:float("inf"))
 
         for x, y in buildings:
-            xdict[x].append(y)
             xmax[x] = max(y, xmax[x])
             xmin[x] = min(y, xmin[x])
 
-            ydict[y].append(x)
             ymax[y] = max(x, ymax[y])
             ymin[y] = min(x, ymin[y])
         
