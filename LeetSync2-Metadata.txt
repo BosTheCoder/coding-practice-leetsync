@@ -116,3 +116,4 @@
 424-longest-repeating-character-replacement|Medium|1764720000000
 567-permutation-in-string|Medium|1764720000000
 153-find-minimum-in-rotated-sorted-array|Medium|1765152000000
+3531-count-covered-buildings|Medium|1765411200000
