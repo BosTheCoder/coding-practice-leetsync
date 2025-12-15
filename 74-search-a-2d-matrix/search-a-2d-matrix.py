@@ -1,32 +1,22 @@
 class Solution:
     def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
-        l,r = 0, len(matrix)-1
-        while l <= r:
-            mid = (l+r) //2
-            if target == matrix[mid][0]:
-                return True
-            if target > matrix[mid][0]:
-                l = mid + 1
-            else:
-                r = mid -1
-        
-        row = r
+        first_cols = [row[0] for row in matrix]
+        ix = bisect.bisect_left(first_cols, target)
 
-        # searching row
-        l,r = 0, len(matrix[row])-1
-        while l <= r:
-            mid = (l+r) //2
-            if target == matrix[row][mid]:
+        # Check if we've found value
+        if ix <len(first_cols) and first_cols[ix] == target:
                 return True
-            if target > matrix[row][mid]:
-                l = mid + 1
-            else:
-                r = mid -1
-        return False
-
-"""
         
-r   l     
-1 , 10,  23
-m
-"""
+        # If less than first value than it's not in matrix
+        if ix == 0:
+            return False
+        
+        row = matrix[ix-1]
+
+        new_ix = bisect.bisect_left(row,target)
+
+        # Check if we've found value in row
+        if new_ix<len(row) and row[new_ix] == target:
+            return True
+        else:
+            return False
