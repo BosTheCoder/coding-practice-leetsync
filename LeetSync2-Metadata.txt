@@ -118,3 +118,4 @@
 153-find-minimum-in-rotated-sorted-array|Medium|1765152000000
 3531-count-covered-buildings|Medium|1765411200000
 11-container-with-most-water|Medium|1765929600000
+278-first-bad-version|Easy|1768262400000
