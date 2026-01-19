@@ -120,3 +120,4 @@
 11-container-with-most-water|Medium|1765929600000
 278-first-bad-version|Easy|1768262400000
 69-sqrtx|Easy|1768780800000
+35-search-insert-position|Easy|1768780800000
