@@ -1,14 +1,21 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
-        dp = [0,0]
-        for i in range(len(nums)-1,-1,-1):
-            with_val = nums[i] + dp[1]
-            without_val = dp[0]
+        including = 0
+        not_including = 0
 
-            curr_max = max(with_val, without_val)
-            
-            # set dp values
-            dp[1] = dp[0]
-            dp[0] = curr_max
+        for i in range(len(nums)-1,-1,-1):
+            new_including = nums[i] + not_including
+            new_not_including = max(including, not_including)
+
+            including = new_including
+            not_including = new_not_including
         
-        return dp[0]
+        return max(including, not_including)
+
+"""
+
+
+
+
+
+"""
