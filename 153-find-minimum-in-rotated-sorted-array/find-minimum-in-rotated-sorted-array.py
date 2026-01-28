@@ -1,40 +1,24 @@
 class Solution:
     def findMin(self, nums: List[int]) -> int:
         l = 0
-        r = len(nums)-1
+        r = len(nums)
 
-        while l < r:
-            mid = l + (r-l)//2
+        while l<r:
+            m = l + (r-l)//2
 
-            if nums[l] > nums[mid]:
-                r = mid
-            elif nums[mid] > nums[r]:
-                l = mid + 1
+            if nums[m]<=nums[-1]:
+                r=m
             else:
-                break
+                l=m+1
 
         return nums[l]
 
 """
-
-4 
+3 
+4
 5 
-6 
-7 
-0 l
-1 m
-2 r
-
-
-3 l
-4 
-5 
-1 l m
-2 r
-
-11
-13 
-15 
-0 rl
+1 l
+2 m
+  r
 
 """
