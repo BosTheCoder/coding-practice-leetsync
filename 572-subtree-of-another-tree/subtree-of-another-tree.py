@@ -19,14 +19,13 @@ class Solution:
                     issame(a.right, b.right)
                 )
         
-
         if not subRoot:
             return True
         
         if not root:
             return False
         
-        if root.val != subRoot.val:
-            return self.isSubtree(root.left,subRoot) or self.isSubtree(root.right,subRoot)
+        if issame(root, subRoot):
+            return True
         
-        return (issame(root.left, subRoot.left) and issame(root.right, subRoot.right)) or (self.isSubtree(root.left,subRoot) or self.isSubtree(root.right,subRoot))
+        return self.isSubtree(root.left,subRoot) or self.isSubtree(root.right,subRoot)
