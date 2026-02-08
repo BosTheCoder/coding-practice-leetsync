@@ -1,16 +1,24 @@
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        max_val = max(nums)
-        min_val = min(nums)
-        arr = [0] * (max_val - min_val + 1)
+        gt, eq , lt = [], [], []
+        pivot = random.sample(nums,1)[0]
 
-        for num in nums:
-            arr[num-min_val] +=1
+        print(nums, k, pivot)
+
+        for val in nums:
+            if val > pivot:
+                gt.append(val)
+            elif val == pivot:
+                eq.append(val)
+            else:
+                lt.append(val)
+            
         
-
-        for i in range(max_val-min_val, -1, -1):
-            k-=arr[i]
-            if k <=0:
-                return i+min_val
-        return 0
-
+        if k <= len(gt):
+            return self.findKthLargest(gt, k)
+        elif k <= len(gt) + len(eq):
+            return eq[0]
+        else:
+            new_k = k-(len(gt) + len(eq))
+            return self.findKthLargest(lt, new_k)
+        
