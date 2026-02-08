@@ -7,13 +7,26 @@ class TimeMap:
         self.d[key].append((timestamp,value))
 
     def get(self, key: str, timestamp: int) -> str:
-        arr = self.d[key]
         
-        ix = bisect.bisect_right(arr,timestamp, key=lambda x:x[0])
+        # binary search
+        arr = self.d[key]
 
-        if ix == 0:
+        if not arr:
             return ""
-        return arr[ix-1][1]
+        
+        l = 0
+        r = len(arr)
+        while l<r:
+            mid = l+(r-l)//2
+            if arr[mid][0] >timestamp:
+                r = mid
+            else:
+                l = mid+1
+
+        if l >0:
+            return arr[l-1][1]
+        else:
+            return ""
 
 
 # Your TimeMap object will be instantiated and called as such:
