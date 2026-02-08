@@ -1,20 +1,21 @@
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        
-        left =  0
-        arr = [0]*26
-        max_length = 0
-        for right, c in enumerate(s):
-            cix = ord(c) - ord("A")
-            arr[cix] += 1
+        l = 0
+        max_win = 0
+        d = {}
 
-            # While the window is invalid
-            while (right - left + 1) - max(arr) > k:
-                left_cix = ord(s[left]) - ord("A")
-                arr[left_cix] -=1
-                left+=1
+        for r, c in enumerate(s):
+            d[c] = d.get(c,0) + 1
             
-            max_length = max(max_length, right-left+1)
+            # shrink window if invalid
+            while (r - l + 1) - max(d.values()) > k:
+                d[s[l]] -= 1
+                l += 1
+            
+            # Check if window length is the largest
+            max_win = max(
+                max_win,
+                (r - l + 1)
+            )
         
-        return max_length
-
+        return max_win
