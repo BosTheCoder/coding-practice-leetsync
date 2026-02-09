@@ -1,46 +1,35 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
-        # Finding the pivot
-        l = 0 
-        r = len(nums)
-
+        # Find rotation point
+        l,r = 0, len(nums)
         while l<r:
-            m = l+(r-l)//2
-
-            if nums[m]<nums[0]:
-                r = m
+            mid = l + (r-l)//2
+            if nums[mid] <= nums[-1]:
+                r = mid
             else:
-                l = m+1
+                l = mid+1
         
-        if l==len(nums):
-            l = 0
+        # figure out which half it might be in
         
-        # Right now L contains the smallest number
-        # Value could be in either half
-
-        if target >= nums[l] and target<=nums[len(nums)-1]:
-            i = bisect_left(nums,target,l)
+        if target >= nums[l] and target <= nums[-1]:
+            ix = bisect.bisect_left(nums, target, l, len(nums))
+        elif target >= nums[0]:
+            ix = bisect.bisect_left(nums,target,0, l)
         else:
-            i = bisect_left(nums,target,0,l)
+            return -1
+        return (
+            ix 
+            if ix<len(nums) and nums[ix] == target
+            else -1
+        )
 
-        return i if i<len(nums) and nums[i]==target else -1
-
+    
 
 """
-
-false, false, false, true...
-
-[4,5,6,7,0,1,2]
-
-p = lambda x: x < nums[0]
+p(x)
+False,false,true,true
 
 
-[1,2,3,4]
-
-[4,1,2,3]
-
-
-[3,1]
-
+x < nums[-1]
 
 """
