@@ -1,12 +1,16 @@
 class Solution:
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        d = defaultdict(list)
+        d = {}
+        for s in strs:
+            sorted_s = str(sorted(s))
+            temp = d.get(sorted_s,[])
+            temp.append(s)
+            d[sorted_s] = temp
 
-        for string in strs:
-            counts = [0] * 26
-            for ch in string:
-                counts[ord(ch) - ord("a")] += 1
-            frozen_counts = tuple(counts)
-            d[frozen_counts].append(string)
+        # go through all keys and put those in new lists of values
+
+        ret = []
+        for k, v in d.items():
+            ret.append(v)
         
-        return list(d.values())
+        return ret
