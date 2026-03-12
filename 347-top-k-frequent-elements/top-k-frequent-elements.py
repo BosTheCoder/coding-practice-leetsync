@@ -1,23 +1,21 @@
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
         counts = Counter(nums)
-        if len(counts) <= k:
-            return list(counts.keys())
 
-        max_val = max(counts.values())
-        arr = [ [] for i in range(max_val+1)]
+        max_count = max(counts.values())
 
-        for key,v in counts.items():
-            arr[v].append(key)
+        counts_to_element = defaultdict(list)
+
+        for element,count in counts.items():
+            counts_to_element[count].append(element)
         
+
         ret = []
-        for i in range(len(arr)-1,-1,-1):
-            if not arr[i]:
-                continue
-            
-            ret.extend(arr[i])
-            # print("ret",ret)
-            if len(ret) == k:
-                return ret
+        count = max_count
+        while len(ret) < k:
+            if count in counts_to_element:
+                ret.extend(counts_to_element[count])
+            count -=1
+
         
         return ret
