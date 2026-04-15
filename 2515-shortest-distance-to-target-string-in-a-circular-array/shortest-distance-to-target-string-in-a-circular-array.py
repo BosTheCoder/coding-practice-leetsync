@@ -11,7 +11,6 @@ class Solution:
             # Calculated distance if going left from startIndex
             leftDistance = startIndex - targetIndex if startIndex>=targetIndex else startIndex - (targetIndex -len(words))
 
-            print(rightDistance, leftDistance)
             min_distance = min(min_distance, leftDistance, rightDistance)
 
         return min_distance
