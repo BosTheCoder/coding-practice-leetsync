@@ -123,3 +123,4 @@
 35-search-insert-position|Easy|1768780800000
 122-best-time-to-buy-and-sell-stock-ii|Medium|1775516400000
 1848-minimum-distance-to-the-target-element|Easy|1776121200000
+2515-shortest-distance-to-target-string-in-a-circular-array|Easy|1776207600000
