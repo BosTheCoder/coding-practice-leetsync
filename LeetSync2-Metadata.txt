@@ -124,3 +124,4 @@
 122-best-time-to-buy-and-sell-stock-ii|Medium|1775516400000
 1848-minimum-distance-to-the-target-element|Easy|1776121200000
 2515-shortest-distance-to-target-string-in-a-circular-array|Easy|1776207600000
+19-remove-nth-node-from-end-of-list|Medium|1779318000000
