@@ -1,19 +1,19 @@
 class Solution:
     def lastStoneWeight(self, stones: List[int]) -> int:
+        # creating max heap
         heap = []
         for stone in stones:
-            heapq.heappush(heap,-stone)
+            heapq.heappush(heap, -stone)
         
-        # pop them bad boys
-        while len(heap) >= 2:
-            # pop 2
-            a = -heapq.heappop(heap)
-            b = -heapq.heappop(heap)
 
-            if a == b:
-                # do nothing as they're both destroyde
-                continue
-            
-            heapq.heappush(heap, -(a-b))
+        # processing heap
+        while len(heap)>1:
+            val_a = -heapq.heappop(heap)
+            val_b = -heapq.heappop(heap)
+
+            remainder = val_a - val_b
+
+            if remainder>0:
+                heapq.heappush(heap, -remainder)
         
         return -heap[0] if heap else 0
